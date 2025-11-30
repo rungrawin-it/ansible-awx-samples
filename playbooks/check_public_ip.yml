@@ -1,13 +1,15 @@
 ---
-- name: Verify Location and Sleep
+- name: Verify Target Location
   hosts: all
-  connection: local
-  gather_facts: false
+  gather_facts: false  # Set to true if you want to see OS details
+  # connection: local  <-- DELETE THIS LINE!
   tasks:
-    - name: Check Public IP (Insecure Mode)
+    - name: Check Public IP of the Target
+      # This command will now run ON the target server via SSH
       command: curl -k -s https://api.ipify.org
       register: public_ip
+      changed_when: false
 
     - name: Reveal True Location
       debug:
-        msg: "I am running on public IP: {{ public_ip.stdout }}"
+        msg: "Host {{ inventory_hostname }} is physically at IP: {{ public_ip.stdout }}"
