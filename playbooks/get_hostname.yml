@@ -1,12 +1,12 @@
 ---
 - name: Get hostname of target hosts
   hosts: all
-  gather_facts: false
+  connection: local
+  gather_facts: true
   tasks:
-    - name: Get hostname
-      ansible.builtin.command: hostname
-      register: hostname_result
-      changed_when: false
+    - name: Display hostname
+      debug:
+        msg: "I am running on: {{ ansible_hostname }}"
 
     - name: Display hostname
       ansible.builtin.debug:
