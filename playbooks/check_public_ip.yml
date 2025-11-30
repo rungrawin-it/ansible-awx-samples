@@ -1,0 +1,13 @@
+---
+- name: Verify Physical Location via Public IP
+  hosts: all
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Check Public IP
+      command: curl -s https://api.ipify.org
+      register: public_ip
+
+    - name: Reveal True Location
+      debug:
+        msg: "The job is physically running on server with IP: {{ public_ip.stdout }}"
