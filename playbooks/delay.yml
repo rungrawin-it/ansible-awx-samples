@@ -1,0 +1,18 @@
+---
+- name: Delay playbook (sleep for specified seconds)
+  hosts: all
+  gather_facts: false
+  vars:
+    delay_seconds: 10
+  tasks:
+    - name: Start delay
+      ansible.builtin.debug:
+        msg: "Starting delay of {{ delay_seconds }} seconds..."
+
+    - name: Wait for specified seconds
+      ansible.builtin.pause:
+        seconds: "{{ delay_seconds }}"
+
+    - name: Delay complete
+      ansible.builtin.debug:
+        msg: "Delay of {{ delay_seconds }} seconds completed."

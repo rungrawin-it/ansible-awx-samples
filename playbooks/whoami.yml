@@ -1,0 +1,13 @@
+---
+- name: Get current user on target hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Run whoami command
+      ansible.builtin.command: whoami
+      register: whoami_result
+      changed_when: false
+
+    - name: Display whoami result
+      ansible.builtin.debug:
+        msg: "Current user: {{ whoami_result.stdout }}"
