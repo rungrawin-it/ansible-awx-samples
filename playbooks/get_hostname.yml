@@ -7,7 +7,3 @@
     - name: Display hostname
       debug:
         msg: "I am running on: {{ ansible_hostname }}"
-
-    - name: Display hostname
-      ansible.builtin.debug:
-        msg: "Hostname: {{ hostname_result.stdout }}"
