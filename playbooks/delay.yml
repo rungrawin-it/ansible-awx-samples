@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-    delay_seconds: 10
+    delay_seconds: 60
   tasks:
     - name: Start delay
       ansible.builtin.debug:
